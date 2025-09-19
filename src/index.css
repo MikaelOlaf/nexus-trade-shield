@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic MEV-Protected DEX Design System
+All colors MUST be HSL for proper theming.
+*/
+
+@layer base {
+  :root {
+    /* Core Theme - Cyberpunk Dark */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    /* Cards & Surfaces - Glassmorphism */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --glass: 240 10% 3.9% / 0.8;
+    --glass-border: 195 100% 50% / 0.2;
+
+    /* Interactive Elements */
+    --popover: 240 3.7% 15.9%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Brand Colors - Electric & Neon */
+    --primary: 195 100% 50%;
+    --primary-foreground: 240 10% 3.9%;
+    --neon-cyan: 195 100% 50%;
+    --neon-purple: 270 100% 70%;
+    --neon-pink: 330 100% 70%;
+
+    /* Secondary Elements */
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Muted Elements */
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    /* Accent & Highlights */
+    --accent: 195 100% 50%;
+    --accent-foreground: 240 10% 3.9%;
+
+    /* Status Colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+
+    /* Borders & Inputs */
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 195 100% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-purple)));
+    --gradient-glow: radial-gradient(circle, hsl(var(--neon-cyan) / 0.3) 0%, transparent 70%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card) / 0.8), hsl(var(--card) / 0.4));
+
+    /* Shadows & Effects */
+    --shadow-glow: 0 0 40px hsl(var(--neon-cyan) / 0.3);
+    --shadow-intense: 0 0 60px hsl(var(--neon-cyan) / 0.5);
+    --shadow-purple: 0 0 40px hsl(var(--neon-purple) / 0.3);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* Custom Utilities & Animations */
+@layer utilities {
+  .glass-morphism {
+    @apply backdrop-blur-lg bg-white/10 border border-white/20;
+  }
+  
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .glow-intense {
+    box-shadow: var(--shadow-intense);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--neon-cyan));
+  }
+  
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .binary-rain {
+    animation: binary-fall 3s linear infinite;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(at 20% 80%, hsl(var(--neon-cyan) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 20%, hsl(var(--neon-purple) / 0.1) 0px, transparent 50%);
+  }
+}
+
+/* Keyframe Animations */
+@keyframes binary-fall {
+  0% { transform: translateY(-100vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.5); }
+  50% { box-shadow: 0 0 40px hsl(var(--neon-cyan) / 0.8); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
